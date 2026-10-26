@@ -276,16 +276,23 @@
       if (history.replaceState) history.replaceState(null, '', h);
     });
   }
-  var spyIds = ['home', 'about', 'menu', 'signature', 'gallery', 'reviews', 'faq', 'reserve', 'contact'];
+  var spyIds = ['home', 'about', 'menu', 'signature', 'build', 'origins', 'quiz', 'barista', 'gallery', 'reviews', 'events', 'faq', 'loyalty', 'reserve', 'contact'];
   function updateSpy() {
     var y = window.pageYOffset + headerOffset() + window.innerHeight * 0.25;
-    var current = 'home';
-    spyIds.forEach(function (id) { var el = document.getElementById(id); if (el && el.offsetTop <= y) current = id; });
-    // sections not in nav map to the nearest previous nav item
-    $$('.nav-link, .mobile-link').forEach(function (l) {
-      var on = l.getAttribute('href') === '#' + current;
-      l.classList.toggle('is-active', on);
-      if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+    var idx = 0;
+    spyIds.forEach(function (id, i) { var el = document.getElementById(id); if (el && el.getBoundingClientRect().top + window.pageYOffset <= y) idx = i; });
+    if (window.innerHeight + window.pageYOffset >= document.documentElement.scrollHeight - 4) idx = spyIds.length - 1;
+    ['.nav-link', '.mobile-link'].forEach(function (sel) {
+      var links = $$(sel); if (!links.length) return;
+      var hrefs = links.map(function (l) { return l.getAttribute('href'); });
+      var cur = null;
+      // sections without their own link map to the nearest previous linked section
+      for (var i = idx; i >= 0; i--) { if (hrefs.indexOf('#' + spyIds[i]) !== -1) { cur = '#' + spyIds[i]; break; } }
+      links.forEach(function (l) {
+        var on = l.getAttribute('href') === cur;
+        l.classList.toggle('is-active', on);
+        if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+      });
     });
   }
 
@@ -1063,7 +1070,7 @@
       var y = window.pageYOffset, vh = window.innerHeight;
       var max = document.documentElement.scrollHeight - vh;
       if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ')';
-      if (pill) pill.classList.toggle('is-visible', y > 500);
+      if (pill) { var ft = document.querySelector('.site-footer'); pill.classList.toggle('is-visible', y > 500 && !(ft && ft.getBoundingClientRect().top < vh - 40)); }
       if (!reduceMotion && y < vh * 1.3) {
         if (heroInner) heroInner.style.translate = '0 ' + (y * 0.12).toFixed(1) + 'px';
         if (cup) cup.style.translate = '0 ' + (y * -0.1).toFixed(1) + 'px';
