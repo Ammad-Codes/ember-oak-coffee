@@ -1156,7 +1156,7 @@
   /* ---------- Hero typewriter ---------- */
   function initTypewriter() {
     var el = $('#typeWord'); if (!el) return;
-    var words = ['espresso', 'pour over', 'cold brew', 'cortado', 'flat white', 'chai'];
+    var words = ['velvet espresso', 'slow filter coffee', 'iced cold brew', 'silky flat whites', 'warm spiced chai'];
     if (reduceMotion) return;
     var wi = 0, ci = words[0].length, del = true;
     function tick() {

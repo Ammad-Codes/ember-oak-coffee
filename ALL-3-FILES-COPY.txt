@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script>
     (function () {
       try { var t = localStorage.getItem('eo-theme'); if (t === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
@@ -151,7 +151,7 @@
         </div>
         <p class="eyebrow hero-eyebrow reveal" data-delay="120">Specialty Coffee House &middot; Portland</p>
         <h1 class="hero-title" id="heroTitle">Slow-crafted coffee, <em>served with ceremony</em></h1>
-        <p class="hero-type reveal" data-delay="520"><span class="sr-only">We pour espresso, pour over, cold brew and more.</span><span aria-hidden="true">We pour <span class="type-word" id="typeWord">espresso</span><span class="caret"></span></span></p>
+        <p class="hero-type reveal" data-delay="520"><span class="sr-only">We pour velvet espresso, slow filter coffee, iced cold brew, silky flat whites and warm spiced chai.</span><span aria-hidden="true">We pour <span class="type-word" id="typeWord">velvet espresso</span><span class="caret"></span></span></p>
         <p class="hero-sub reveal" data-delay="640">Single-origin beans, roasted in small batches and brewed with patience. Take a seat, and let the cup arrive the way it was meant to.</p>
         <div class="hero-actions reveal" data-delay="760">
           <a href="#menu" class="btn btn-primary btn-arrow magnetic">Explore Menu</a>
@@ -773,7 +773,7 @@
   <button class="order-pill" id="orderPill" type="button" aria-label="Order now"><span id="orderPillLabel">Order now</span><span class="pill-count" id="orderPillCount" hidden>0</span></button>
   <div class="cursor-spot" id="cursorSpot" aria-hidden="true"></div>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
 
@@ -2883,7 +2883,7 @@ mark { background: rgba(184, 138, 74, 0.35); color: inherit; padding: 0 0.12em; 
   /* ---------- Hero typewriter ---------- */
   function initTypewriter() {
     var el = $('#typeWord'); if (!el) return;
-    var words = ['espresso', 'pour over', 'cold brew', 'cortado', 'flat white', 'chai'];
+    var words = ['velvet espresso', 'slow filter coffee', 'iced cold brew', 'silky flat whites', 'warm spiced chai'];
     if (reduceMotion) return;
     var wi = 0, ci = words[0].length, del = true;
     function tick() {
